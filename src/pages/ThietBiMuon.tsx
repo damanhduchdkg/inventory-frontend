@@ -21,7 +21,7 @@ type RowData = {
   "Ngày mượn": string;
   "Tên thiết bị": string;
   "Seri/SĐT": string;
-  "Biển số xe": string;
+  // "Biển số xe": string;
   "Người mượn": string;
   "Ghi chú": string;
   "Đã trả": boolean;
@@ -49,7 +49,9 @@ export default function ThietBiMuon() {
         const traRaw = traData.data || traData;
 
         const traKeySet = new Set(
-          traRaw.map((row: any[]) => `${row[2] || ""}_${row[4] || ""}`)
+          traRaw.map(
+            (row: any[]) => `${row[1] || ""}_${row[2] || ""}_${row[4] || ""}`
+          )
         );
 
         const formattedData: RowData[] = muonRaw.map((row: any[]) => ({
@@ -58,7 +60,9 @@ export default function ThietBiMuon() {
           "Seri/SĐT": row[2] || "",
           // "Biển số xe": row[3] || "",
           "Người mượn": row[3] || "",
-          "Đã trả": traKeySet.has(`${row[2] || ""}_${row[3] || ""}`),
+          "Đã trả": traKeySet.has(
+            `${row[1] || ""}_${row[2] || ""}_${row[3] || ""}`
+          ),
           "Ghi chú": row[5] || "",
         }));
 

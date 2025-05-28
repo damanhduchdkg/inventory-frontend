@@ -41,7 +41,7 @@ export default function ThietBiTra() {
         // Kiểm tra nếu API trả về dữ liệu chứa mảng
         const rawData = data.data || data; // Tùy thuộc vào cấu trúc của API trả về
         if (Array.isArray(rawData) && rawData.length > 0) {
-          const formattedData: RowData[] = rawData.map((row) => ({
+          const formattedData: RowData[] = rawData.slice(1).map((row) => ({
             "Ngày trả": row[0] || "",
             "Tên thiết bị": row[1] || "",
             "Seri/SĐT": row[2] || "",
